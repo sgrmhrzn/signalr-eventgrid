@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace TodoApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/signalr")]
     [ApiController]
     public class NotificationHook : ControllerBase
     {
@@ -37,7 +37,7 @@ namespace TodoApi.Controllers
             return "test";
         }
 
-        [HttpPost]
+        [HttpPost("notification")]
         public async Task<IActionResult> Post([FromBody]object SignalRData)
         {
             try
@@ -74,16 +74,40 @@ namespace TodoApi.Controllers
 
                     switch (eventGridModel.NotificationType)
                     {
-                        case NotificationType.SendPresenceStatus:
-                            {
-                                await hub.SendMessage("","");
-                                break;
-                            }
                         case NotificationType.NotifySupervisors:
                             {
-
+                                await hub.SendMessage(eventGridModel.AgentId,eventGridModel.ConversationId);
                                 break;
                             }
+                        //case NotificationType.NotifySupervisors:
+                        //    {
+                        //        await hub.SendMessage(eventGridModel.Data);
+                        //        break;
+                        //    }
+                        //case NotificationType.NotifySupervisorsAboutEnd:
+                        //    {
+                        //        await hub.NotifySupervisorsAboutEnd(eventGridModel.Data);
+                        //        break;
+                        //    }
+                        //case NotificationType.NotifyAssignmentToUser:
+                        //    {
+                        //        await hub.VoiceMailAssignmentNotification(eventGridModel.Data);
+                        //        break;
+                        //    }
+                        //case NotificationType.NotifyVoiceMailBoxUsers:
+                        //    {
+                        //        await hub.VoiceMailNotification(eventGridModel.Data);
+                        //        break;
+                        //    }
+                        //case NotificationType.SendPresenceStatus:
+                        //    {
+                        //        await hub.SendAgentStatus(eventGridModel.Data);
+                        //        break;
+                        //    }
+                        //case NotificationType.DropNotificationToNotificationHub:
+                        //    {await hub.NotificationReceived(eventGridModel.Data);
+                        //        break;
+                        //    }
                         default:
                             {
                                 break;
@@ -97,9 +121,9 @@ namespace TodoApi.Controllers
                     validationResponse = eventGridValidation.ValidationCode
                 });
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw new Exception("Exception Occured");
+                throw new Exception(ex.Message);
             }
         }
 

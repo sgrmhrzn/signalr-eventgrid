@@ -18,7 +18,7 @@ namespace SignalRTestApp.Models
     public enum NotificationCommandType
     {
         NotifySupervisors,
-        SendNotifyAgentAboutEnd,
+        NotifyAgentAboutEnd,
         NotifyAssignmentToUser,
         NotifyTransitionToUsers,
         NotifySupervisorsAboutEnd,

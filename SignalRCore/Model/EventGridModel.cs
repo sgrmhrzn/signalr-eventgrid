@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SignalRCore.Enum;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,7 +8,7 @@ namespace SignalRCore.Model
 {
     public class EventGridModel
     {
-        public NotificationCommandType NotificationType { get; set; }
+        public NotificationType NotificationType { get; set; }
 
         public string TenantId { get; set; }
         public string AgentId { get; set; }
