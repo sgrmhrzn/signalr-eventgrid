@@ -71,7 +71,7 @@ namespace TodoApi.Controllers
                     //}
                     //await _proxy.Invoke("MethodName", SignalRData);
                     NotificationHub hub = new NotificationHub();
-
+                    
                     switch (eventGridModel.NotificationType)
                     {
                         case NotificationType.SendPresenceStatus:

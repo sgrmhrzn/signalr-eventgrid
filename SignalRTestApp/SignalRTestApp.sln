@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2000
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalRTestApp", "SignalRTestApp\SignalRTestApp.csproj", "{310BFE35-25FE-4C1F-9DDE-6F8956FB997F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignalRTestApp", "SignalRTestApp\SignalRTestApp.csproj", "{310BFE35-25FE-4C1F-9DDE-6F8956FB997F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignalRCore", "..\SignalRCore\SignalRCore.csproj", "{3C4EAFC3-97B6-477C-BE1B-A5A5B4F50AD2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reflection", "Reflection\Reflection.csproj", "{838486FB-FFBE-436F-9C33-51F8EE66C6EA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{310BFE35-25FE-4C1F-9DDE-6F8956FB997F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{310BFE35-25FE-4C1F-9DDE-6F8956FB997F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{310BFE35-25FE-4C1F-9DDE-6F8956FB997F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C4EAFC3-97B6-477C-BE1B-A5A5B4F50AD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C4EAFC3-97B6-477C-BE1B-A5A5B4F50AD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C4EAFC3-97B6-477C-BE1B-A5A5B4F50AD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C4EAFC3-97B6-477C-BE1B-A5A5B4F50AD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{838486FB-FFBE-436F-9C33-51F8EE66C6EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{838486FB-FFBE-436F-9C33-51F8EE66C6EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{838486FB-FFBE-436F-9C33-51F8EE66C6EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{838486FB-FFBE-436F-9C33-51F8EE66C6EA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

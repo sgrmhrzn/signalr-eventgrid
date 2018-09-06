@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.AspNet.SignalR.Client;
 using Microsoft.AspNetCore.Http;
@@ -45,7 +46,7 @@ namespace SignalRTestApp.Controllers
                 foreach (var message in messages)
                 {
                     EventGridModel eventGridUserStatModel = JsonConvert.DeserializeObject<EventGridModel>(message["Data"].ToString());
-                    
+
                     if (_hub == null)
                     {
                         var hubURL = "";
@@ -63,7 +64,7 @@ namespace SignalRTestApp.Controllers
                             await _proxy.Invoke("NotifySupervisors", eventGridUserStatModel.Data);
                             break;
                         case NotificationCommandType.SendNotifyAgentAboutEnd:
-                            await _proxy.Invoke("SendNotifyAgentAboutEnd", eventGridUserStatModel.AgentId,eventGridUserStatModel.ConversationId,eventGridUserStatModel.TenantId);
+                            await _proxy.Invoke("SendNotifyAgentAboutEnd", eventGridUserStatModel.AgentId, eventGridUserStatModel.ConversationId, eventGridUserStatModel.TenantId);
                             break;
                         case NotificationCommandType.NotifyAssignmentToUser:
                             await _proxy.Invoke("NotifyAssignmentToUser", eventGridUserStatModel.Data);
