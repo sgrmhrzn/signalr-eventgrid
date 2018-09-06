@@ -49,46 +49,57 @@ namespace SignalRTestApp.Controllers
 
                     if (_hub == null)
                     {
-                        var hubURL = "";
+                        var hubURL = "http://localhost:34543/";
                         _hub = new HubConnection(hubURL);
                     }
                     if (_hub.State != ConnectionState.Connected)
                     {
-                        _proxy = _hub.CreateHubProxy("SignalRHub");
+                        _proxy = _hub.CreateHubProxy("NotificationHub");
                         await _hub.Start();
+                        //if (eventGridUserStatModel.NotificationCommandType == NotificationCommandType.SendPresenceStatus)
+                        //{
+                        //    _proxy = _hub.CreateHubProxy("AgentStatusHub");                            
+                        //}
+                        //else
+                        //{
+                        //    _proxy = _hub.CreateHubProxy("NotificationHub");
+
+                        //}
+                        //await _hub.Start();
                     }
 
                     switch (eventGridUserStatModel.NotificationCommandType)
                     {
                         case NotificationCommandType.NotifySupervisors:
-                            await _proxy.Invoke("NotifySupervisors", eventGridUserStatModel.Data);
+                            await _proxy.Invoke("SendMessage", "", eventGridUserStatModel.Data);
+
+                            //await _proxy.Invoke("NotifySupervisors", eventGridUserStatModel.Data);
                             break;
-                        case NotificationCommandType.SendNotifyAgentAboutEnd:
-                            await _proxy.Invoke("SendNotifyAgentAboutEnd", eventGridUserStatModel.AgentId, eventGridUserStatModel.ConversationId, eventGridUserStatModel.TenantId);
+                        case NotificationCommandType.NotifyAgentAboutEnd:
+                            await _proxy.Invoke("C", eventGridUserStatModel.AgentId,eventGridUserStatModel.ConversationId,eventGridUserStatModel.TenantId);
                             break;
                         case NotificationCommandType.NotifyAssignmentToUser:
-                            await _proxy.Invoke("NotifyAssignmentToUser", eventGridUserStatModel.Data);
+                            await _proxy.Invoke("VoiceMailAssignmentNotification", eventGridUserStatModel.Data);
                             break;
                         case NotificationCommandType.NotifyTransitionToUsers:
-                            await _proxy.Invoke("NotifyTransitionToUsers", eventGridUserStatModel.Data);
+                            await _proxy.Invoke("VoiceMailNotification", eventGridUserStatModel.Data);
                             break;
                         case NotificationCommandType.NotifySupervisorsAboutEnd:
                             await _proxy.Invoke("NotifySupervisorsAboutEnd", eventGridUserStatModel.Data);
                             break;
                         case NotificationCommandType.NotifyVoiceMailBoxUsers:
-                            await _proxy.Invoke("NotifyVoiceMailBoxUsers", eventGridUserStatModel.Data);
+                            await _proxy.Invoke("VoiceMailNotification", eventGridUserStatModel.Data);
                             break;
                         case NotificationCommandType.SendPresenceStatus:
-                            await _proxy.Invoke("SendPresenceStatus", eventGridUserStatModel.Data);
+                            await _proxy.Invoke("SendAgentStatus", eventGridUserStatModel.Data);
                             break;
                         case NotificationCommandType.DropNotificationToNotificationHub:
-                            await _proxy.Invoke("DropNotificationToNotificationHub", eventGridUserStatModel.Data);
+                            await _proxy.Invoke("NotificationReceived", eventGridUserStatModel.Data);
                             break;
                         default:
                             break;
                     }
 
-                    await _proxy.Invoke("MethodName", SignalRData);
                 }
                 return new OkObjectResult(new
                 {
