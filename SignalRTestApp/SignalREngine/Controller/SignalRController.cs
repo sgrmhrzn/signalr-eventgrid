@@ -1,21 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR.Client;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using SignalRTestApp.Common;
-using SignalRTestApp.Models;
+using SignalREngine.Common;
+using SignalREngine.Models;
 
 namespace SignalRTestApp.Controllers
 {
     [Route("api/signalr")]
-    [ApiController]
     public class SignalRController : ControllerBase
     {
         private static HubConnection _hub;
@@ -86,31 +81,31 @@ namespace SignalRTestApp.Controllers
                                 new Thread(() =>
                                 {
                                     // do work here
-                                    _hub.InvokeAsync("SendMessage", "", eventGridUserStatModel.Data).Wait();
+                                    //_hub.InvokeAsync("SendMessage", "", eventGridUserStatModel.Data).Wait();
                                 }).Start();
                                 //await _proxy.Invoke("NotifySupervisors", eventGridUserStatModel.Data);
                                 break;
                             }
                         case NotificationCommandType.NotifyAgentAboutEnd:
-                            await _hub.InvokeAsync("C", eventGridUserStatModel.AgentId, eventGridUserStatModel.ConversationId, eventGridUserStatModel.TenantId);
+                            //await _hub.InvokeAsync("C", eventGridUserStatModel.UserId, eventGridUserStatModel.UserId, eventGridUserStatModel.TenantId);
                             break;
                         case NotificationCommandType.NotifyAssignmentToUser:
-                            await _hub.InvokeAsync("VoiceMailAssignmentNotification", eventGridUserStatModel.Data);
+                            //await _hub.InvokeAsync("VoiceMailAssignmentNotification", eventGridUserStatModel.Data);
                             break;
                         case NotificationCommandType.NotifyTransitionToUsers:
-                            await _hub.InvokeAsync("VoiceMailNotification", eventGridUserStatModel.Data);
+                            //await _hub.InvokeAsync("VoiceMailNotification", eventGridUserStatModel.Data);
                             break;
                         case NotificationCommandType.NotifySupervisorsAboutEnd:
-                            await _hub.InvokeAsync("NotifySupervisorsAboutEnd", eventGridUserStatModel.Data);
+                            //await _hub.InvokeAsync("NotifySupervisorsAboutEnd", eventGridUserStatModel.Data);
                             break;
                         case NotificationCommandType.NotifyVoiceMailBoxUsers:
-                            await _hub.InvokeAsync("VoiceMailNotification", eventGridUserStatModel.Data);
+                            //await _hub.InvokeAsync("VoiceMailNotification", eventGridUserStatModel.Data);
                             break;
                         case NotificationCommandType.SendPresenceStatus:
-                            await _hub.InvokeAsync("SendAgentStatus", eventGridUserStatModel.Data);
+                            //await _hub.InvokeAsync("SendAgentStatus", eventGridUserStatModel.Data);
                             break;
                         case NotificationCommandType.DropNotificationToNotificationHub:
-                            await _hub.InvokeAsync("NotificationReceived", eventGridUserStatModel.Data);
+                            //await _hub.InvokeAsync("NotificationReceived", eventGridUserStatModel.Data);
                             break;
                         default:
                             break;

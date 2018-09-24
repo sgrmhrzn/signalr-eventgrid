@@ -1,14 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Azure.EventGrid;
-using Microsoft.Azure.EventGrid.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using SignalRChat.Hubs;
 using SignalRCore.Enum;
 using SignalRCore.Model;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace TodoApi.Controllers
@@ -42,6 +38,7 @@ namespace TodoApi.Controllers
         {
             try
             {
+                //HubConnection connection;
                 var messages = JsonConvert.DeserializeObject<JArray>(SignalRData.ToString());
 
                 // If the request is for subscription validation, send back the validation code.
@@ -71,12 +68,15 @@ namespace TodoApi.Controllers
                     //}
                     //await _proxy.Invoke("MethodName", SignalRData);
                     NotificationHub hub = new NotificationHub();
-                    
+                    await hub.SendMessage("", "");
+                    //connection = new HubConnectionBuilder().WithUrl("http://localhost:34543/chatHub").Build();
+
                     switch (eventGridModel.NotificationType)
                     {
                         case NotificationType.NotifySupervisors:
                             {
-                                await hub.SendMessage(eventGridModel.AgentId,eventGridModel.ConversationId);
+                                //await connection.StartAsync();
+                                //await connection.InvokeAsync("SendMessage", eventGridModel.AgentId,eventGridModel.ConversationId);
                                 break;
                             }
                         //case NotificationType.NotifySupervisors:

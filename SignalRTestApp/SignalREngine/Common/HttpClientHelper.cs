@@ -1,9 +1,9 @@
-﻿using SignalRTestApp.Enums;
+﻿using SignalREngine.Enums;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 
-namespace SignalRTestApp.Common
+namespace SignalREngine.Common
 {
     internal static class HttpClientHelper
     {

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNet.SignalR.Client;
-using Microsoft.AspNetCore.Http;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SignalRTestApp.Models;
 
@@ -17,8 +12,8 @@ namespace SignalRTestApp.Controllers
 
         public PublishController()
         {
-            string topicAccesskey = "/Tj/cDru5mn2g/6tfo/cyDaBSlkw5CE2G2SxIyEb8lY=";
-            string topicEndPoint = "https://signalrtest-test.southeastasia-1.eventgrid.azure.net/api/events";
+            string topicAccesskey = "2iamR/G4fk2EMr8H8yuPoSc3UwvTs5oZq+St+GUkamc=";
+            string topicEndPoint = "https://mytopic.southeastasia-1.eventgrid.azure.net/api/events";
             _eventGridPublisher = new EventGridPublisher(topicAccesskey, topicEndPoint);
         }
 

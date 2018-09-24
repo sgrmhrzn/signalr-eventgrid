@@ -4,9 +4,9 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using SignalRTestApp.Enums;
+using SignalREngine.Enums;
 
-namespace SignalRTestApp.Common
+namespace SignalREngine.Common
 {
     public class StandardHttpClient : IHttpClient
     {

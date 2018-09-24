@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  signalrengine:
+    image: signalrengine
+    build:
+      context: .
+      dockerfile: SignalREngine/Dockerfile
